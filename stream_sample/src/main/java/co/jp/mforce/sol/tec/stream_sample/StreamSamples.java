@@ -15,7 +15,7 @@ public class StreamSamples {
 	 * 太古のコードであるが、どうしてもインデックスが欲しい時以外は使わない。
 	 * トラバース目的で使う場合、「インデックスが欲しい」のか「トラバースしたい」のかわからんので非推奨
 	 */
-	public void インデックス回し() {
+	public void パターン1_インデックス回し() {
 		for (int i = 0; i < names.length; i++) {
 			this.writer(names[i], i);
 		}
@@ -25,7 +25,7 @@ public class StreamSamples {
 	 * 要素をトラバースしたいなら一般的な構文。
 	 * foreach または拡張for文と呼ばれる。
 	 */
-	public void foreach回し() {
+	public void パターン2_foreach回し() {
 		// インデックスが欲しいなら別途定義が必要
 		for (String name : names) {
 			this.writer(name);
@@ -36,16 +36,17 @@ public class StreamSamples {
 	 * Java8 で追加された Stream API を利用したパターン
 	 * Rubyとかでよく見かけるが、Java8 に見慣れていないとアロー (->) に戸惑う気がするので慣れておきたい。
 	 */
-	public void StreamAPI回し() {
+	public void パターン3_StreamAPI回し() {
 		// Streamの場合、基本的にインデックスは取れない
 		Stream.of(names).forEach(s -> writer(s));
+//		Stream.of(names).forEach((s) -> writer(s)); //引数が1つの場合、アロー前の()は省略可
 	}
 
 	/**
 	 * StreamAPIを使いたい。でもインデックスもほしい。
 	 * そんな欲張りなあなたに。
 	 */
-	public void eachWithIndex風Stream回し() {
+	public void パターン4_eachWithIndex風Stream回し() {
 		this.eachWithIndex(names, (name, index) -> this.writer(name, index));
 	}
 	
